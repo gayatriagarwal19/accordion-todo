@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>ToDo List</title>
+</head>
+
+<body>
+    <div class="">
+        <div class="container">
+            <div>
+                <h1 class="" data-aos="fade-right">Add A New ToDo</h1>
+            </div>
+            <form action="">
+                <div class="">
+                    <div>
+                        <label for="title">Title:</label>
+                        <input type="text" class="form-control" id="Title" placeholder="Enter Title"><br> <br>
+                    </div>
+                    <div>
+                        <label for="task">Task:</label>
+                        <input type="text" class="form-control" id="Task" placeholder="Enter Task"><br>
+                    </div>
+                    <div id="btn">
+                        <button type="button" class="btn btn-primary" id="addNameButton">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <br>
+        <div class="container">
+            <div class="list">
+                <h3 data-aos="fade-right">To-Do List</h3>
+                <div>
+                    <ul>
+                        <li>
+                            <div class="accordion-item" id="listOfTask">
+                                <h2 class="accordion-header" id="headingThree">
+                                  <button id="title" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                  <ol>
+                                      <li>
+                                      </li>
+                                  </ol>
+                                </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                  <div class="accordion-body" id="task">
+                                      <strong>Description: </strong>
+                                  </div>
+                                </div>
+                        </li>
+                        <div class="btn">
+                            <button id="rmvbtn">
+                                delete
+                            </button>
+                        </div>
+                    </ul>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script>
+        var givenTitle = document.querySelector('#Title')
+        var givenTask = document.querySelector('#Task')
+        var btnClass = document.querySelector('#addNameButton')
+        var listOfTask = document.querySelector('#listOfTask')
+        var title = document.querySelector('#title')
+        var task = document.querySelector('#task')
+        btnClass.addEventListener('click', () => {
+            var actualTask = givenTask.value
+            var actualTitle = givenTitle.value
+            if (actualTask.length != 0 && actualTitle.length != 0) {
+
+                var createAnHTMLList = actualTitle
+                var ceateAnHTMLList = actualTask 
+                title.innerHTML += createAnHTMLList
+                task.innerHTML += ceateAnHTMLList
+                givenTask.value = ''
+                givenTitle.value = ''
+                givenTask.classList.remove('red')
+                givenTitle.classList.remove('red')
+            
+            }else if(actualTask.length === 0 || actualTitle.length === 0){
+                alert("You must write something!");
+            } 
+            else
+            {
+                givenTask.classList.add('red')
+                givenTitle.classList.add('red')
+            }
+        })
+        function removeTaskFromTheList(e){
+            e.parentElement.remove()
+        }
+        document.getElementById("rmvbtn").addEventListener('click', (event) =>{
+            event.target.tagname === 'BUTTON'
+            const button= getElementById("rmvbtn").event.target;
+            const ul = button.parentElement;
+            if(button.textcontentn === 'delete'){
+                ul.removeTaskFromTheList(li);
+            }
+
+        })
+    </script>
+</body>
+
+</html>
